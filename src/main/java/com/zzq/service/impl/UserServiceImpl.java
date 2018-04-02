@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private SysUserMapperCustom userMapperCustom;
 
+	//支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void saveUser(SysUser user) throws Exception {
@@ -35,8 +36,8 @@ public class UserServiceImpl implements UserService {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void updateUser(SysUser user) {
 		/**
-		 * 1、使用 updateByPrimaryKey 方法当你传的对象的字段并没有全部赋值时，它会将数据库中你没有赋值的字段
-		 * 		值全部设置为 null
+		 * 1、使用 updateByPrimaryKey 方法当你传的对象的字段并没有全部赋值时，它会将数据库中你
+		 * 		没有赋值的字段值全部设置为 null
 		 * 	2、updateByPrimaryKeySelective 不会
 		 */
 //		userMapper.updateByPrimaryKey(user);
@@ -50,6 +51,7 @@ public class UserServiceImpl implements UserService {
 		userMapper.deleteByPrimaryKey(userId);
 	}
 
+	//支持当前事务，如果当前没有事务，就以非事务方式执行。
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public SysUser queryUserById(String userId) {
