@@ -49,7 +49,7 @@ public class AnimalController {
         Map<String, Object> map = new HashMap<>();
         map.put("name", "admin");
         map.put("sex", "m");
-        map.put("age", 14);
+        map.put("age", 18);
         animalService.insertByMap(map);
     }
 
